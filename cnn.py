@@ -1,6 +1,7 @@
 import numpy
 import sys
 import pprint as pp
+import math
 
 def conv_(img, conv_filter,stride):
     filter_size = conv_filter.shape[1]
@@ -85,4 +86,18 @@ def fc(feature_map,weights):
     #Unpack feature map and return activation layer
     return numpy.dot(feature_map.reshape(-1),weights.T)
 
+"""
+Ex:
+predictions = np.array([[0.25,0.25,0.25,0.25],
+                        [0.01,0.01,0.01,0.97]])
+targets = np.array([[1,0,0,0],
+                   [0,0,0,1]])
+"""
+def cross_entropy(predictions, targets):
+    N = predictions.shape[0]
+    ce = -numpy.sum(targets*numpy.log(predictions))/N
+    return ce
+        
+    
+    
     

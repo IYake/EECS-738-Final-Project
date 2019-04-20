@@ -3,10 +3,11 @@ import numpy as np
 import skimage.data
 import softmax as sm
 import cifar as c
-################
-c.plot(c.img(15))
 
-img = skimage.data.coffee()
+cifar_index = 12
+
+c.plot(c.img(cifar_index))
+img = c.img(cifar_index)
 num_filters = 1
 depth = img.shape[-1]
 stride = 2.0
