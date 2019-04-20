@@ -79,15 +79,10 @@ def relu(feature_map):
 
 #expects weights shape as (activation depth) x (volume of feature map)
 def fc(feature_map,weights):
-    
     if (numpy.prod(feature_map.shape) != weights.shape[-1]):
         print("Number of weights in FC doesn't match volume of feature map.")
         sys.exit()
     #Unpack feature map and return activation layer
     return numpy.dot(feature_map.reshape(-1),weights.T)
-    
-    
-    
-    
-    
+
     

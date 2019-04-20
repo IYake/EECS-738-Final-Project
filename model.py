@@ -1,0 +1,26 @@
+import cnn
+import numpy as np
+import skimage.data
+import softmax as sm
+import cifar as c
+################
+c.plot(c.img(15))
+
+img = skimage.data.coffee()
+num_filters = 1
+depth = img.shape[-1]
+stride = 2.0
+classes = 10
+l1_filter = np.random.rand(num_filters,3,3,img.shape[-1])
+
+print("\n**Working with conv layer 1**")
+l1_feature_map = cnn.conv(img, l1_filter)
+print("\n**ReLU**")
+l1_feature_map_relu = cnn.relu(l1_feature_map)
+print("\n**Pooling**")
+l1_feature_map_relu_pool = cnn.pooling(l1_feature_map_relu, 2, 2)
+print("\n**Fully connected**")
+l1_fc_weights = np.ones((classes,np.prod(l1_feature_map_relu_pool.shape)))
+l1_fc = cnn.fc(l1_feature_map_relu_pool,l1_fc_weights)
+
+output = sm.softmax(l1_fc)
