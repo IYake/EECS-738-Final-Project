@@ -14,5 +14,4 @@ def lrn(layer, radius, alpha, beta, name, bias):
             for i in layer[x][y]:
                 sqr_sum[x, y, i] = sum(layer[x, y, max(0, i - radius / 2): min(95, i + radius / 2)] ** 2)
                 res[x, y , i] = layer[x, y, i] / (bias + alpha * sqr_sum[x, y, i])** beta
-    return res
-
+    return res    

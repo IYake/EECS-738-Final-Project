@@ -5,8 +5,11 @@ import softmax as sm
 import cifar as c
 
 cifar_index = 12
-
+labels = c.get_labels_list()
 c.plot(c.img(cifar_index))
+
+label = c.get_title(cifar_index).lstrip().rstrip()
+
 img = c.img(cifar_index)
 num_filters = 1
 depth = img.shape[-1]
@@ -25,3 +28,13 @@ l1_fc_weights = np.ones((classes,np.prod(l1_feature_map_relu_pool.shape)))
 l1_fc = cnn.fc(l1_feature_map_relu_pool,l1_fc_weights)
 
 output = sm.softmax(l1_fc)
+output_ex = np.zeros(output.shape)
+output_ex[labels.index(label)] = 1
+
+loss = cnn.cross_entropy(output,output_ex)
+print(loss)
+
+
+
+
+
