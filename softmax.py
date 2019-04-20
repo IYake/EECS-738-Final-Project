@@ -6,11 +6,11 @@ def softmax(fully_connected_8):
     w_exp = []
     for i in fully_connected_8:
         w_exp.append(math.exp(i))
-        print i
     sum_w_exp = sum(w_exp)
     softmax = []
     for i in w_exp:
-        softmax.append(round(i / sum_w_exp, 6)) #set precision to 6
-    print softmax
+        softmax.append(i / sum_w_exp)
+    for i in softmax:
+        print('{0:6f}'.format(i)) #round values to 6 places after decimal
     return softmax
 
