@@ -110,3 +110,13 @@ def row(ind):
 def img(ind):
     return twoToThree(row(ind),32,32)
 
+def get_title(ind):
+    title = re.sub('[!@#$b]', '', str(labels[tr_y[ind]]))
+    return title
+
+def get_labels_list():
+    labels = []
+    for i in range(10):
+        labels.append(get_title(i))
+    return labels
+
