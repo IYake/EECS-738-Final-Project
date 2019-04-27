@@ -1,5 +1,5 @@
 # EECS-738-P3
-## Convolutional Neural Network Similar to AlexNext but not Exactly(?)
+## Convolutional Neural Network Similar to AlexNet but not Exactly(?)
 
 ### Team Members
 - **Ian Yake**
