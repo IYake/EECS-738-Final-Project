@@ -1,6 +1,13 @@
 # EECS-738-P3
 ## Convolutional Neural Network Similar to AlexNext but not Exactly(?)
 
+### Team Members
+**Ian Yake**
+**Jules Garrett**
+**Jian Shen**
+**Dinesh Dandamudi**
+**Brian Quiroz**
+
 ### Architecture
 Text.
 
