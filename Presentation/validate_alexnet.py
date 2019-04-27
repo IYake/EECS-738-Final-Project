@@ -39,6 +39,7 @@ plt.axis('off')
 #Bar Graph
 x = [u'Dog', u'Cat', u'Apple', u'Bird', u'Chair', u'Lion', u'Shark', u'Table']
 y = [0.04, 0.16, 0.14, 0.05, 0.15, 0.01, 0.03, 0.06]
+y.sort(reverse=True)
 
 fig, ax = plt.subplots()
 width = 0.75 # the width of the bars
