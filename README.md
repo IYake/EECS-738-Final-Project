@@ -1,5 +1,5 @@
 # EECS-738-P3
-## How Neural Network can be Used to Make Classification Predictions
+## Convolutional Neural Network Similar to AlexNext but not Exactly(?)
 
 ### Architecture
 Text.
