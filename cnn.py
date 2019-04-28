@@ -3,30 +3,6 @@ import sys
 import pprint as pp
 import math
 
-# def conv_(img, conv_filter,stride):
-#     filter_size = conv_filter.shape[1]
-#     result = numpy.zeros((img.shape[0],img.shape[1]))
-#     #Looping through the image to apply the convolution operation.
-#     for r in numpy.uint16(numpy.arange(filter_size/stride,
-#                           img.shape[0]-filter_size/stride+1)):
-#         for c in numpy.uint16(numpy.arange(filter_size/stride,
-#                                            img.shape[1]-filter_size/stride+1)):
-#             """
-#             3D block of the image multiplied by 3D block of weights in the convolution filter
-#             """
-#             curr_region = img[r-numpy.uint16(numpy.floor(filter_size/stride)):r+numpy.uint16(numpy.ceil(filter_size/stride)),
-#                               c-numpy.uint16(numpy.floor(filter_size/stride)):c+numpy.uint16(numpy.ceil(filter_size/stride)),
-#                               :]
-#             #Element-wise multiplication between the current region and the filter.
-#             curr_result = curr_region * conv_filter
-#             conv_sum = numpy.sum(curr_result) #Summing the result of multiplication.
-#             result[r, c] = conv_sum #Saving the summation in the convolution layer feature map.
-
-    #Clipping the outliers of the result matrix.
-    # final_result = result[numpy.uint16(filter_size/stride):result.shape[0]-numpy.uint16(filter_size/stride),
-    #                       numpy.uint16(filter_size/stride):result.shape[1]-numpy.uint16(filter_size/stride)]
-    # return final_result
-
 
 ##############################################################
 ################CONVOLUTIONAL FUNCTIONS#######################
@@ -39,6 +15,7 @@ def conv(img, conv_filter, bias, stride=2):
     out_dim = int((img_dim - filt)/stride) + 1 #calculate output dim
     assert n_chan == n_filt_chan, "filter and image must have same number of channels"
 
+    print((n_filt, out_dim, out_dim))
     out = np.zeros((n_filt, out_dim, out_dim))
 
     #convolve each filter over the image
@@ -97,9 +74,6 @@ def pooling(feature_map, size=2, stride=2):
 
 #util for pool_back
 def nanargmax(arr):
-    '''
-    return index of the largest non-nan value in the array. Output is an ordered pair tuple
-    '''
     idx = np.nanargmax(arr)
     idxs = np.unravel_index(idx, arr.shape)
     return idxs
@@ -125,13 +99,6 @@ def pool_back(dpool, orig, filt, stride):
 
 
 def relu(feature_map):
-    #Preparing the output of the ReLU activation function.
-    # relu_out = np.zeros(feature_map.shape)
-    # for map_num in range(feature_map.shape[-1]):
-    #     for r in np.arange(0,feature_map.shape[0]):
-    #         for c in np.arange(0, feature_map.shape[1]):
-    #             relu_out[r, c, map_num] = np.max([feature_map[r, c, map_num], 0])
-    # return relu_out
     return feature_map * (feature_map > 0)
 
 #expects weights shape as (activation depth) x (volume of feature map)
@@ -142,13 +109,7 @@ def fc(feature_map,weights):
     #Unpack feature map and return activation layer
     return np.dot(feature_map.reshape(-1),weights.T)
 
-"""
-Ex:
-predictions = np.array([[0.25,0.25,0.25,0.25],
-                        [0.01,0.01,0.01,0.97]])
-targets = np.array([[1,0,0,0],
-                   [0,0,0,1]])
-"""
+
 def cross_entropy(predictions, targets):
     N = predictions.shape[0]
     ce = -np.sum(targets*np.log(predictions))/N

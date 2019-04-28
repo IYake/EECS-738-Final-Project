@@ -12,18 +12,21 @@ IMG_SIZE = 64
 
 
 train_data =[]
+labels = []
 for file in tqdm(os.listdir(train_path)):
     for pic in os.listdir(train_path+"/"+file+"/images"):
         img = cv2.imread(train_path+"/"+file+"/images/"+pic)
         train_data.append(np.array(img))
+        labels.append(file)
 train_data = np.array(train_data)
+print(train_data.shape)
 # np.save('tiny-imagenet-train.npy', train_data)
 
 
 # labels = read.csv(label_path+"/"+"words.txt")
-labels = []
-with open(label_path+"/"+'words.txt') as f:
-    reader = csv.reader(f, delimiter = "\t")
-    labels = list(reader)
+# labels = []
+# with open(label_path+"/"+'words.txt') as f:
+#     reader = csv.reader(f, delimiter = "\t")
+#     labels = list(reader)
 # np.save('tiny-imagenet-train-labels.npy', labels)
 np.savez_compressed('tiny-imagenet', train=train_data, labels=labels)
