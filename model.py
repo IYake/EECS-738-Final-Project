@@ -8,7 +8,7 @@ cifar_index = 12
 labels = c.get_labels_list()
 c.plot(c.img(cifar_index))
 
-label = c.get_title(cifar_index).lstrip().rstrip()
+label = c.get_title(cifar_index)
 
 img = c.img(cifar_index)
 num_filters = 1
