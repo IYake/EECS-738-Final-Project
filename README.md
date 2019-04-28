@@ -1,5 +1,5 @@
 # EECS-738-P3
-## Convolutional Neural Network Similar to AlexNet but not Exactly(?)
+## Convolutional Neural Network Based on AlexNet for Image Prediction
 
 ### Team Members
 - **Ian Yake**
